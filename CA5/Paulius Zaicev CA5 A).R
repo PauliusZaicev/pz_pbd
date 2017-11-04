@@ -90,11 +90,13 @@ sqrt_func <- function(numb1){
 
 #cubicroot function
 
+#cbroot <- function(numb1) asb(numb1)^(1/3)*sign(numb1)^(1/(1/3))
+
 cbroot <- function(numb1) {
-  if(x < 0){
-    return (- (-numb1)**(1/3))}
-  else{
-    return (numb1**(1/3))}}
+  if(numb1 < 0){
+  return (- (-numb1)**(1/3))}
+else{
+  return (numb1**(1/3))}}
 
 #test cubic root function
 #cbroot(-8)
