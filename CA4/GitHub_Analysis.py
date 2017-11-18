@@ -93,8 +93,8 @@ if __name__ == '__main__':
     changes_file = 'changes_python.log'
     data = read_file(changes_file)
     commits = get_commits(data)
-    #save_commits(commits, 'changes.csv')
     
+    #save_commits(commits, 'changes.csv')
     
     # print the number of lines read
     print(len(data))
@@ -104,7 +104,8 @@ if __name__ == '__main__':
     print(commits[0].author)
     print(commits[420].author)
     print(commits[0].revision)
-
+    print (commits[23].comment)
+    print (commits[40].changed_path)
 
 
 '''
@@ -158,7 +159,7 @@ sns.barplot(x = 'author', y = 'date', data = log_in_per, order = ['Thomas', 'Vin
 '''
 
     
-
+'''
 if __name__ == '__main__':
     # open the file - and read all of the lines.
     changes_file = 'changes_python.log'
@@ -173,4 +174,4 @@ if __name__ == '__main__':
     print(commits[0].author)
     print(commits[420].author)
     print(commits[0].revision)
-    save_commits(commits, 'changes.csv')
+    save_commits(commits, 'changes.csv')'''
