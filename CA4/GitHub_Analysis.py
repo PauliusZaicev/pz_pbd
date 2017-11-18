@@ -106,7 +106,7 @@ if __name__ == '__main__':
     commits = get_commits(data)
     #make commits as a data frame 
     data_frame = to_df(commits)
-    data_frame['author'][9]
+    
     #going to test latter
     #save_commits(commits, 'changes.csv')
     
@@ -114,20 +114,22 @@ if __name__ == '__main__':
     print(len(data))
     #print lenght of commits, from thiscommits variable will start forming my data set
     print(len(commits))
-    #display 0 index from the commit list
-    print(commits[5])
-    #print author from the 0 index commit list
+    #display 0 index from the in commit list
+    print(commits[0])
+    #print author from the 0 index in commit list
     print(commits[0].author)
-    #print author from the 420 index commit list
+    #print author from the 420 index in commit list
     print(commits[420].author)
-    #print revision from the 0 index commit list
+    #print revision from the 0 index in commit list
     print(commits[0].revision)
-    #print comment from the 23 index commit list
+    #print comment from the 23 index in commit list
     print (commits[23].comment)
+    #print change paths from the 40 index in commit list
+    print (commits[40].change_path)
+    #print author in index 9 from the data frame
+    print (data_frame['author'][9])
 
     
-    #data_frame.head()['changed path']
-
     #import required libraries
     import pandas as pd
     import numpy as np
@@ -139,27 +141,31 @@ if __name__ == '__main__':
     import warnings
     warnings.filterwarnings('ignore')
     
-    #print commits
-
-'''
-    #display data frame
-    print data_frame.head()
-
-    
-    
     #display information about data set
     data_frame.info()
-    
-    #display head of the data set
+
+    #display data frame
     data_frame.head()
     
     #print unique authors
     data_frame['author'].unique()
     
+
+    #replace author /OU=Domain Control Validated/CN=svn.company.net into DCV
+    #this creates new series of values, so we need to assign this new column to the correct column
+    data_frame['author'] = data_frame['author'].replace(['/OU=Domain Control Validated/CN=svn.company.net'], 'DCV')
     
-    #count how many different outhors have ogged in
+    #print unique authors
+    data_frame['author'].unique()
+
+
+    #count how many different authors have logged in
     log_in_per = data_frame[['author' ,'date']].groupby(['author'], as_index = False).count()
+    log_in_per = log_in_per.rename(columns = {'author': 'Author', 'date': 'Log in count'})
     print log_in_per
+    
+    
+    
     #create plot
     sns.factorplot('author', 'date', data = data_frame, size = 4, aspect = 3)
     
