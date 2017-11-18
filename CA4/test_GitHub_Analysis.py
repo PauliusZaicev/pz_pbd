@@ -1,7 +1,7 @@
 
 import unittest
 
-from simple import get_commits, read_file
+from GitHub_Analysis import get_commits, read_file
             
 class TestCommits(unittest.TestCase):
 
@@ -20,7 +20,11 @@ class TestCommits(unittest.TestCase):
         commits = get_commits(self.data)
         self.assertEqual('Thomas', commits[0].author)
         self.assertEqual('Jimmy', commits[420].author)
-        self.assertEqual('r1551925', commits[0].author)
-
+        self.assertEqual('r1551925', commits[0].revision)
+        self.assertEqual(['SFR-108 : Create bilingual French/English translated Android application for SFR', '-----------', 'three dots. "..."'],
+                commits[23].comment)
+        self.assertEqual(['A /cloud/personal/client-international/android/branches/android-15.2-solutions/libs/ui/res/layout/permission_list_item.xml (from /cloud/personal/client-international/android/branches/android-15.2-solutions-att-m/libs/ui/res/layout/permission_list_item.xml:1548354)'],
+                commits[40].changed_path)
+        
 if __name__ == '__main__':
     unittest.main()
