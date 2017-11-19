@@ -367,7 +367,7 @@ if __name__ == '__main__':
 
 
     
-        
+     #look for a size of each option grouped by author and str
     authors_time_comments = data_frame.groupby(['author' ,'day_time_str']).sum()
     #with out hierachi
     authors_time_comments = data_frame.groupby(['author' ,'day_time_str']).sum().unstack()
@@ -381,30 +381,6 @@ if __name__ == '__main__':
    
 
 
-    #amount of comments in the morning and night
-    #amlount of log ins in the morning and night
-    #by author what time does he work
-                
-
-    '''doesn't work with 09 values'''
-    
-    '''
-    data_frame['day_period'] = data_frame['hours']
-    data_frame['day_period'].loc[data_frame['hours'] < 12] = 0
-    data_frame['day_period'].loc[data_frame['hours'] >= 12] = 1
-    
-    
-    #add additional cell in the dqata frame which will have first string value
-    data_frame ['hour_first_index'] = data_frame['hours'].str[0]
-
-    data_frame['day_period_first_index'] = data_frame ['hour_first_index']
-    data_frame['day_period_first_index'].loc[data_frame['hour_first_index'] == 0] = 0
-
-    del data_frame['hour_first_index']
-    
-    
-    '''
-    
 
     
     
