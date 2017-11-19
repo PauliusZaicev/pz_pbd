@@ -227,33 +227,60 @@ if __name__ == '__main__':
           '17', '18','19','20','21','22','23', '24'], '1')
     
                 
-    #count how many commits done in the morning and in the evening
-    count_daytime = data_frame[['day_time' ,'revision']].groupby(['day_time'], as_index = False).count()
 
     #create sub plots
     fig, (axis1,axis2) = plt.subplots(1,2,figsize=(15,6))
     
-    #create a count plot how many times what time authors had made commits
-    ax = sns.countplot(x='day_time', data=data_frame, ax=axis1, hue = 'day_time')
-    ax.set (xlabel = 'Period of the day', ylabel = 'Log in count')
+    
+        #count how many commits done in the morning and in the evening
+    count_daytime = data_frame[['day_time' ,'revision']].groupby(['day_time'], as_index = False).count()
+    count_daytime['day_time'] = count_daytime['day_time'].replace(['0'], 'Morning')
+    count_daytime['day_time'] = count_daytime['day_time'].replace(['1'], 'Evening') 
+    count_daytime['visual'] = count_daytime[['day_time' ,'revision']].apply(lambda x : '{} = {}'.format(x[0],x[1]), axis=1)
+    count_daytime
+    
+    
+    #get percentage
+    ax = sns.barplot(x='day_time', y='revision', data=count_daytime, ax=axis1, order=['Morning','Evening'])
+    #total is the amojn of the commits
+    total = len(data_frame['revision'])
+    for p in ax.patches:
+        height = p.get_height()
+        ax.text(p.get_x()+p.get_width()/2.,
+            height + 3,
+            '{:1.2f}'.format(height/total),
+            ha="center") 
     plt.show
+    
     
     #count how many comments made in the morning and howe many in the evening
     number_of_lines_time = data_frame[['day_time' ,'number of lines']].groupby(['day_time'], as_index = False).sum()
+    number_of_lines_time['day_time'] = number_of_lines_time['day_time'].replace(['0'], 'Morning')
+    number_of_lines_time['day_time'] = number_of_lines_time['day_time'].replace(['1'], 'Evening')  
+    number_of_lines_time['visual'] = number_of_lines_time[['day_time' ,'number of lines']].apply(lambda x : '{} = {}'.format(x[0],x[1]), axis=1)
     number_of_lines_time 
 
-    ax = sns.barplot(x='day_time', y='number of lines', data=number_of_lines_time, ax=axis2, order=['0','1'])
+    ax = sns.barplot(x='day_time', y='number of lines', data=number_of_lines_time, ax=axis2, order=['Morning','Evening'])
     ax.set (xlabel = 'Period of the day', ylabel = 'Number of commented lines')
+    #total is a sum of commented liens in a dataframe
+    total = sum(number_of_lines_time['number of lines'])
+    for p in ax.patches:
+        height = p.get_height()
+        ax.text(p.get_x()+p.get_width()/2.,
+            height + 3,
+            '{:1.2f}'.format(height/total),
+            ha="center") 
     plt.show
+
     
     
     fig, (axis1,axis2) = plt.subplots(1,2,figsize=(15,6))
         
-    ax = count_daytime.plot.pie(y='revision', ax = axis1)   
-    ax.set ( ylabel = 'Log in count')
+    ax = count_daytime.plot.pie(y='revision', shadow = True, ax = axis1, labels = count_daytime['visual'])   
+    #ax.set ( ylabel = 'Log in count')
     plt.show
     
-    ax = number_of_lines_time.plot.pie(y='number of lines', ax = axis2)   
+    ax = number_of_lines_time.plot.pie(y='number of lines', shadow = True, ax = axis2, labels = number_of_lines_time['visual'])   
     ax.set ( ylabel = 'Number of commented lines')
     plt.show
 
