@@ -10,6 +10,7 @@ def read_file(changes_file):
     return [line.strip() for line in open(changes_file, 'r')]
 
 
+
 #create commit class
 class Commit (object):
     
@@ -22,10 +23,12 @@ class Commit (object):
         self.number_of_lines = number_of_lines
         self.change_path = change_path
         self.comment = comment
+      
         
     #create instance which return commits as a dictionary
     def to_dic(self):
         return {'revision': self.revision, 'author': self.author, 'date': self.date, 'time': self.time, 'number of lines': self.number_of_lines , 'changed path': self.change_path, 'comment': self.comment}
+    
     
     #return instance variable
     #return number of lines as a string, and join comments (because we can have multiple lines comments)
@@ -42,6 +45,8 @@ def to_df(data):
     for commit in data:
         commits.append(commit.to_dic())
     return pd.DataFrame(commits)
+
+
 
 #get commits function will help us to break inforamtion from each commit       
 def get_commits(data):
@@ -84,6 +89,8 @@ def get_commits(data):
     #return all commits
     return commits
 
+
+
 #save as csv
 def save_commits(commits, any_file):
     #open file as write
@@ -95,6 +102,7 @@ def save_commits(commits, any_file):
        my_file.write(str(commit)) 
     #close files
     my_file.close()
+
 
 
 if __name__ == '__main__':
@@ -129,6 +137,7 @@ if __name__ == '__main__':
     #print author in index 9 from the data frame
     print (data_frame['author'][9])
 
+
     
     #import required libraries
     import pandas as pd
@@ -140,6 +149,9 @@ if __name__ == '__main__':
     plt.style.use('fivethirtyeight')
     import warnings
     warnings.filterwarnings('ignore')
+    
+    
+    
     
     #display information about data set
     data_frame.info()
@@ -159,27 +171,54 @@ if __name__ == '__main__':
     data_frame['author'].unique()
 
 
-    #count how many different authors have logged in and groub by author
+    #count how many different authors have commit objects and groub by author
     log_in_per = data_frame[['author' ,'date']].groupby(['author'], as_index = False).count()
     #rename column names and print
-    log_in_per = log_in_per.rename(columns = {'author': 'Author', 'date': 'Log in count'})
+    log_in_per = log_in_per.rename(columns = {'author': 'Author', 'date': 'Commit count'})
     #sort values
-    log_in_per = log_in_per.sort_values(['Log in count'], ascending = [False])
+    log_in_per = log_in_per.sort_values(['Commit count'], ascending = [False])
     log_in_per
     
     
+    
     #create a factor plot
-    sns.factorplot('Author', 'Log in count', data = log_in_per, size = 4, aspect = 3)
+    sns.factorplot('Author', 'Commit count', data = log_in_per, size = 4, aspect = 3)
     
-    #create an axe for plots
+    
+    
+    #create an axe for a plot
     fig, (axis1) = plt.subplots(1,1,figsize=(15,5))
-    
     #display as a bar chart
-    ax = sns.barplot('Author', 'Log in count', data = log_in_per, order = ['Thomas', 'Vincent', 'DCV', 'Jimmy','Freddie', 'Dave', 'ajon0002', 'murari.krishnan', 'Nicky', 'Alan'], ax = axis1)
-    ax.set (xlabel = 'Author', ylabel = 'Log in count')
+    ax = sns.barplot('Author', 'Commit count', data = log_in_per, order = ['Thomas', 'Vincent', \
+                                                                           'DCV', 'Jimmy','Freddie', 'Dave', \
+                                                                           'ajon0002', 'murari.krishnan', \
+                                                                           'Nicky', 'Alan'], ax = axis1)
+    ax.set (xlabel = 'Author', ylabel = 'Commit count')
+    plt.show
+
+    
+    
+    #display overall percentage of commits by author
+    commits = int(data_frame['date'].count())
+    #add new column to the data frame, and calculate percentage
+    log_in_per['Percentage'] = pd.Series.round(((log_in_per['Commit count']*100)/commits),2 )
+    log_in_per
+    
+    
+    #create and axis for the pie chart
+    fig, (axis1) = plt.subplots(1,1,figsize=(15,10))
+    #plot relevant data frame
+    ax = log_in_per.plot.pie(y='Percentage', shadow = True, ax = axis1, labels = log_in_per['Percentage'])   
+    #set a y label
+    ax.set ( ylabel = 'Percentage of commit objects')
+    #set a possition of the legend to the left top corner
+    plt.legend(labels = log_in_per['Author'], bbox_to_anchor=(0.85,1.025), loc="upper left")
     plt.show
 
 
+    '''Number of comments per author & average number of comments per commit per author'''
+
+    
     #check how many comment lines each author has created
     number_of_lines = data_frame[['author' ,'number of lines']].groupby(['author'], as_index = False).sum()
     #rename columns
@@ -189,33 +228,29 @@ if __name__ == '__main__':
     number_of_lines
     
     
+    
     #merge two different data frames
     mergged_df = pd.merge( left = log_in_per, right = number_of_lines, left_on = 'Author', right_on = 'Author' )
     mergged_df
     
+    
+    
     #add new column to the dataframe
-    mergged_df['Avarage number of comments per commit'] = pd.Series.round(mergged_df['Commented lines'] / mergged_df['Log in count'], 2)
+    mergged_df['Average number of comments per commit'] = pd.Series.round(mergged_df['Commented lines'] / mergged_df['Commit count'], 2)
     mergged_df
     
     
     #create a factor plot
-    sns.factorplot('Author', 'Avarage number of comments per commit', data = mergged_df, size = 4, aspect = 3)
+    sns.factorplot('Author', 'Average number of comments per commit', data = mergged_df, size = 4, aspect = 3)
     
     
-    #statistic 3
-    data_frame
-    
-    #add new collumn
-    #data_frame['hour_split'] = data_frame['time'].str.split(':')
-    
-    #access index hours
-    #data_frame['hour'] = data_frame['time'].str.split(':',1).str[0]
+    '''The favourit part of the day to create a commit object'''
     
     #strip time into hours minutes and seconds
     data_frame['hours'], data_frame['minutes'], data_frame['seconds'] = data_frame['time'].str.split(':',2).str
     
     
-    #add additional column in hte dataframe, 0 first half of the day 1 second half of the day
+    #add additional column in the dataframe, 0 first half of the day 1 second half of the day
     data_frame['day_time'] = data_frame['hours']
     
     #repalce first half of the day values to 0
@@ -228,21 +263,46 @@ if __name__ == '__main__':
     
                 
 
-    #create sub plots
-    fig, (axis1,axis2) = plt.subplots(1,2,figsize=(15,6))
     
+   
     
-        #count how many commits done in the morning and in the evening
+    #count how many commits done in the morning and in the evening
     count_daytime = data_frame[['day_time' ,'revision']].groupby(['day_time'], as_index = False).count()
+    #Replace value 0 into str Morning
     count_daytime['day_time'] = count_daytime['day_time'].replace(['0'], 'Morning')
+    #replace value 1 into str Evening
     count_daytime['day_time'] = count_daytime['day_time'].replace(['1'], 'Evening') 
+    #connect two values for visualisation purpose
     count_daytime['visual'] = count_daytime[['day_time' ,'revision']].apply(lambda x : '{} = {}'.format(x[0],x[1]), axis=1)
+    #display
     count_daytime
     
     
-    #get percentage
+    
+    
+    #count how many comments made in the morning and howe many in the evening
+    number_of_lines_time = data_frame[['day_time' ,'number of lines']].groupby(['day_time'], as_index = False).sum()
+    #Replace value 0 into str Morning
+    number_of_lines_time['day_time'] = number_of_lines_time['day_time'].replace(['0'], 'Morning')
+    #replace value 1 into str Evening
+    number_of_lines_time['day_time'] = number_of_lines_time['day_time'].replace(['1'], 'Evening')  
+    #connect two values for visualisation purpose
+    number_of_lines_time['visual'] = number_of_lines_time[['day_time' ,'number of lines']].apply(lambda x : '{} = {}'.format(x[0],x[1]), axis=1)
+    #display
+    number_of_lines_time 
+
+    
+    
+    
+    #create sub plots
+    fig, (axis1,axis2) = plt.subplots(1,2,figsize=(15,6))
+    
+    #create sns barplot
     ax = sns.barplot(x='day_time', y='revision', data=count_daytime, ax=axis1, order=['Morning','Evening'])
-    #total is the amojn of the commits
+    ax.set (xlabel = 'Period of the day', ylabel = 'Count of commits created')
+
+    
+    #total is the lenght of the commits
     total = len(data_frame['revision'])
     for p in ax.patches:
         height = p.get_height()
@@ -253,15 +313,10 @@ if __name__ == '__main__':
     plt.show
     
     
-    #count how many comments made in the morning and howe many in the evening
-    number_of_lines_time = data_frame[['day_time' ,'number of lines']].groupby(['day_time'], as_index = False).sum()
-    number_of_lines_time['day_time'] = number_of_lines_time['day_time'].replace(['0'], 'Morning')
-    number_of_lines_time['day_time'] = number_of_lines_time['day_time'].replace(['1'], 'Evening')  
-    number_of_lines_time['visual'] = number_of_lines_time[['day_time' ,'number of lines']].apply(lambda x : '{} = {}'.format(x[0],x[1]), axis=1)
-    number_of_lines_time 
-
+    #create sns barplot
     ax = sns.barplot(x='day_time', y='number of lines', data=number_of_lines_time, ax=axis2, order=['Morning','Evening'])
     ax.set (xlabel = 'Period of the day', ylabel = 'Number of commented lines')
+    
     #total is a sum of commented liens in a dataframe
     total = sum(number_of_lines_time['number of lines'])
     for p in ax.patches:
@@ -273,20 +328,62 @@ if __name__ == '__main__':
     plt.show
 
     
-    
+    #create sub plots
     fig, (axis1,axis2) = plt.subplots(1,2,figsize=(15,6))
         
     ax = count_daytime.plot.pie(y='revision', shadow = True, ax = axis1, labels = count_daytime['visual'])   
-    #ax.set ( ylabel = 'Log in count')
+    ax.set ( ylabel = 'Count of commits created')
     plt.show
     
     ax = number_of_lines_time.plot.pie(y='number of lines', shadow = True, ax = axis2, labels = number_of_lines_time['visual'])   
     ax.set ( ylabel = 'Number of commented lines')
     plt.show
+    
+    
+    
+    
+    #add additional column to the data frame
+    data_frame['day_time_str'] =  data_frame['day_time']
+    #replace int 0 to str Morning
+    data_frame['day_time_str'] = data_frame['day_time_str'].replace(['0'], 'Morning')
+    #replace int 1 to str Evening
+    data_frame['day_time_str'] = data_frame['day_time_str'].replace(['1'], 'Evening')
+    
+    
+    #look for a size of each option grouped by author and str
+    authors_time_commits = data_frame.groupby(['author' ,'day_time_str']).count()
+    
+    #with out hierachi
+    authors_time_commits = data_frame.groupby(['author' ,'day_time_str']).count().unstack()
+    authors_time_commits = authors_time_commits['revision']
+    authors_time_commits
+    
+
+    #create an ax for the plot
+    fig, (axis1) = plt.subplots(1,1,figsize=(17,5))
+    plot = authors_time_commits.plot.bar(stacked=False, title="Amount of commit objects by author", ax = axis1)
+    plot.set_xlabel("Author")
+    plot.set_ylabel("Morning or Evening")
+
+
+    
+        
+    authors_time_comments = data_frame.groupby(['author' ,'day_time_str']).sum()
+    #with out hierachi
+    authors_time_comments = data_frame.groupby(['author' ,'day_time_str']).sum().unstack()
+    authors_time_comments
+    
+    #create an ax for the plot
+    fig, (axis1) = plt.subplots(1,1,figsize=(17,5))
+    plot = authors_time_comments.plot.bar(stacked=False, title="Amount of comments by author", ax = axis1)
+    plot.set_xlabel("Author")
+    plot.set_ylabel("Morning or Evening")
+   
+
 
     #amount of comments in the morning and night
     #amlount of log ins in the morning and night
-    #overall amount of 
+    #by author what time does he work
                 
 
     '''doesn't work with 09 values'''
