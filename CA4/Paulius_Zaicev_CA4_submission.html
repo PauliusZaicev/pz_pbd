@@ -11778,8 +11778,8 @@ div#notebook {
 <h1 id="CA4">CA4<a class="anchor-link" href="#CA4">&#182;</a></h1><h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><p>The fourth assignment is based on transforming a large dataset into text format (over 5000 lines of text)</p>
 <p>Dataset consist of the GitHup updates by different users.</p>
 <p>I scrubed (cleaned) the data and placed it into the relevant objects.</p>
-<p>After srubing dataset I gained 422 different sets of commit objects.</p>
-<p>In this report I will analyse 422 commit objects that are stored in the list by using Python and will come up with an interesting statistics.</p>
+<p>After scrubbing dataset I gained 422 different sets of commit objects.</p>
+<p>In this report I will analyse 422 commit objects that are stored in the list by using Python and will come up with interesting statistics.</p>
 <p>My code for calculating the analysis will be documented and tested.</p>
 <h2 id="Python-sript-preparation">Python sript preparation<a class="anchor-link" href="#Python-sript-preparation">&#182;</a></h2>
 </div>
@@ -11837,7 +11837,7 @@ div#notebook {
     <span class="c1">#return instance variable</span>
     <span class="c1">#return number of lines as a string, and join comments</span>
     <span class="c1">#the reason why we need to join comments is </span>
-    <span class="c1">#because we can have multiple lines comments)</span>
+    <span class="c1">#because we can have multiple lines comments</span>
     <span class="k">def</span> <span class="fm">__repr__</span> <span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">revision</span><span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">author</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">date</span> <span class="o">+</span> \
     <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number_of_lines</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> \
@@ -11863,7 +11863,7 @@ div#notebook {
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">commits</span><span class="p">)</span>
 
 
-<span class="c1">#get commits function will help us to break inforamtion from each commit       </span>
+<span class="c1">#get commits function will help us to break information from each commit       </span>
 <span class="k">def</span> <span class="nf">get_commits</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="c1">#each commit is separated by 72 hifins</span>
     <span class="n">sep</span> <span class="o">=</span> <span class="mi">72</span><span class="o">*</span><span class="s1">&#39;-&#39;</span>
@@ -11889,9 +11889,9 @@ div#notebook {
             <span class="c1">#set file end index</span>
             <span class="c1">#build in function looks for empty line index and </span>
             <span class="c1">#return that index (use build in index function)</span>
-            <span class="c1">#look foe empty lien and stop looking once found</span>
+            <span class="c1">#look for empty lines and stop looking once found</span>
             <span class="n">change_file_end_index</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="c1">#chnaged path line starts from the third line</span>
+            <span class="c1">#changed path line starts from the third line</span>
             <span class="n">commit</span><span class="o">.</span><span class="n">change_path</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span><span class="mi">3</span> <span class="p">:</span> <span class="n">change_file_end_index</span><span class="p">]</span>
             <span class="c1">#get comments</span>
             <span class="n">commit</span><span class="o">.</span><span class="n">comment</span> <span class="o">=</span> <span class="n">data</span> <span class="p">[</span><span class="n">change_file_end_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
@@ -11921,12 +11921,12 @@ div#notebook {
 <h3 id="Test-Functions">Test Functions<a class="anchor-link" href="#Test-Functions">&#182;</a></h3><p>To make sure that my functions work, I am going to test each of them separately.</p>
 <p>Going to check:</p>
 <ul>
-<li>Lenght of the dataset</li>
-<li>Lenght of commit objects</li>
-<li>Who is the author at index 420 possition in commits list</li>
+<li>Length of the dataset</li>
+<li>Length of commit objects</li>
+<li>Who is the author at index 420 position in commits list</li>
 <li>Revision number at index 0 possition in commits list</li>
 <li>Comments at index 23 possition in commits list</li>
-<li>Chanegd paths at index 40 possition in commits list</li>
+<li>Changed paths at index 40 possition in commits list</li>
 <li>Who is the author at index 9 position in the the data frame</li>
 </ul>
 
@@ -11941,7 +11941,7 @@ div#notebook {
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="c1">#open the file - and read all lines.</span>
     <span class="n">changes_file</span> <span class="o">=</span> <span class="s1">&#39;changes_python.log&#39;</span>
-    <span class="c1">#assigne all lines to data variable</span>
+    <span class="c1">#assign all lines to data variable</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">read_file</span><span class="p">(</span><span class="n">changes_file</span><span class="p">)</span>
     <span class="c1">#get commits from get_commits function and insert data variable</span>
     <span class="n">commits</span> <span class="o">=</span> <span class="n">get_commits</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -11991,7 +11991,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#print lenght of commit objects</span>
+<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#print length of commit objects</span>
     <span class="c1">#from this commits variable I will start forming my dataframe</span>
     <span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">commits</span><span class="p">))</span>
 </pre></div>
@@ -12024,7 +12024,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#print author at the 420 index possition from the commit list</span>
+<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#print author at the 420 index position from the commit list</span>
     <span class="k">print</span><span class="p">(</span><span class="n">commits</span><span class="p">[</span><span class="mi">420</span><span class="p">]</span><span class="o">.</span><span class="n">author</span><span class="p">)</span>
 </pre></div>
 
@@ -12056,7 +12056,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#print revision at the 0 index possition from the commit list</span>
+<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#print revision at the 0 index position from the commit list</span>
     <span class="k">print</span><span class="p">(</span><span class="n">commits</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">revision</span><span class="p">)</span>
 </pre></div>
 
@@ -12088,7 +12088,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#print comment at the 23 index posstion from the commit list</span>
+<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#print comment at the 23 index postion from the commit list</span>
     <span class="k">print</span> <span class="p">(</span><span class="n">commits</span><span class="p">[</span><span class="mi">23</span><span class="p">]</span><span class="o">.</span><span class="n">comment</span><span class="p">)</span>
 </pre></div>
 
@@ -12120,7 +12120,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#print changed paths at the 40 index possition from the commit list</span>
+<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#print changed paths at the 40 index position from the commit list</span>
     <span class="k">print</span> <span class="p">(</span><span class="n">commits</span><span class="p">[</span><span class="mi">40</span><span class="p">]</span><span class="o">.</span><span class="n">change_path</span><span class="p">)</span>
 </pre></div>
 
@@ -12152,7 +12152,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#print author at the 9 index possition from the data frame</span>
+<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#print author at the 9 index position from the data frame</span>
     <span class="k">print</span> <span class="p">(</span><span class="n">data_frame</span><span class="p">[</span><span class="s1">&#39;author&#39;</span><span class="p">][</span><span class="mi">9</span><span class="p">])</span>
 </pre></div>
 
@@ -12224,7 +12224,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Once I have imported all required libraries for my analysis I can start to analyse and explore data.</p>
-<p>Build in function <strong>.info()</strong> shows that data frame have 422 entries and display all 7 column names.</p>
+<p>Build in function <strong>.info()</strong> shows that data frame has 422 entries and display all 7 column names.</p>
 <p>Below we can see that data frame doesn't have any missing values.</p>
 
 </div>
@@ -12506,7 +12506,7 @@ memory usage: 23.1+ KB
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-biggest-amount-of-commit-objects-by-Author">The biggest amount of commit objects by Author<a class="anchor-link" href="#The-biggest-amount-of-commit-objects-by-Author">&#182;</a></h3><p>Once I have a list of authors ready, I am going to investigate which author was the most active and had created a biggest number of commit objects in the dataset.</p>
+<h3 id="The-biggest-amount-of-commit-objects-by-Author">The biggest amount of commit objects by Author<a class="anchor-link" href="#The-biggest-amount-of-commit-objects-by-Author">&#182;</a></h3><p>Once I have a list of authors ready, I am going to investigate which author was the most active and had created the biggest number of commit objects in the dataset.</p>
 <p>By using matplotlib and seaborn I will display authors who have generated the biggest amount of commit objects.</p>
 
 </div>
@@ -12517,7 +12517,7 @@ memory usage: 23.1+ KB
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#count how many different authors have commit objects and groub by author</span>
+<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#count how many different authors have commit objects and group by author</span>
     <span class="n">log_in_per</span> <span class="o">=</span> <span class="n">data_frame</span><span class="p">[[</span><span class="s1">&#39;author&#39;</span> <span class="p">,</span><span class="s1">&#39;date&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;author&#39;</span><span class="p">],</span> \
                                                         <span class="n">as_index</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
     <span class="c1">#rename column names and print</span>
@@ -13038,7 +13038,7 @@ KCGEEEIIIYRwkwRQQgghhBBCCOGm/wEj7EitdlYqWQAAAABJRU5ErkJggg==
 <div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#create an axe for a plot</span>
+<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#create an axis for a plot</span>
     <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">axis1</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
     
     <span class="c1">#display as a bar chart</span>
@@ -13340,8 +13340,8 @@ SUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Once data visualisation are completed, we can see that author Thomas have the biggest amount of commit objects (191) and the smallest number of commit objects (1) belongs to author murari.krishnan.</p>
-<p>To better understand data I created pivot table to dispaly percentage of commit objects belonging to each author and will display visualisation in the pie chart.</p>
+<p>Once data visualisation are completed, we can see that author Thomas has the biggest amount of commit objects (191) and the smallest number of commit objects (1) belongs to author murari.krishnan.</p>
+<p>To better understand data I created pivot table to display percentage of commit objects belonging to each author and will display visualisation in the pie chart.</p>
 
 </div>
 </div>
@@ -13473,14 +13473,14 @@ SUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#create and axis for the pie chart</span>
+<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#create an axis for the pie chart</span>
     <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">axis1</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
     <span class="c1">#plot relevant data frame</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">log_in_per</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Percentage&#39;</span><span class="p">,</span> <span class="n">shadow</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axis1</span><span class="p">,</span> \
                              <span class="n">labels</span> <span class="o">=</span> <span class="n">log_in_per</span><span class="p">[</span><span class="s1">&#39;Percentage&#39;</span><span class="p">])</span>   
     <span class="c1">#set a y label</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set</span> <span class="p">(</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;Percentage of commit objects&#39;</span><span class="p">)</span>
-    <span class="c1">#set a possition of the legend to the left top corner</span>
+    <span class="c1">#set a position of the legend to the left top corner</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="n">log_in_per</span><span class="p">[</span><span class="s1">&#39;Author&#39;</span><span class="p">],</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span><span class="mf">1.025</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span>
 </pre></div>
@@ -14417,12 +14417,12 @@ AKDiv69tqngOUOHyAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Number-of-comments-per-author-and-average-number-of-comments-per-commit-object">Number of comments per author and average number of comments per commit object<a class="anchor-link" href="#Number-of-comments-per-author-and-average-number-of-comments-per-commit-object">&#182;</a></h2><p>Once we know that author Thomas is the most active author and that to him belongs the highest number of commit objects, now will be interesting to see if Thomas generated the biggest number of commet lines and if his average number of comments lines per commit object will be a highest.</p>
+<h2 id="Number-of-comments-per-author-and-average-number-of-comments-per-commit-object">Number of comments per author and average number of comments per commit object<a class="anchor-link" href="#Number-of-comments-per-author-and-average-number-of-comments-per-commit-object">&#182;</a></h2><p>Once we know that author Thomas is the most active author and thatthe highest number of commit objects belongs to him, now it will be interesting to see if Thomas generated the biggest number of comment lines and if his average number of comments lines per commit object will be the highest.</p>
 <p>I am going to analyse:</p>
 <ul>
 <li>How many comment lines each user have created</li>
 <li>Average number of comments per commit object grouped by author</li>
-<li>If user with a biggest amount of commit objects (Thomas) will have a highest average of commented lines per commit object</li>
+<li>If user with the biggest amount of commit objects (Thomas) will have the highest average of commented lines per commit object</li>
 </ul>
 
 </div>
@@ -15467,8 +15467,8 @@ IYSwkCRQQgghhBBCCGGh/w9Mwtrf5cbQDwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Visualisation of the average number of comments per commit object represents that author Vincent has highest average of 3.08 (comments per commit object) while author Thomas who have a largest number of commit objects (191) has average of 1.23 comments per one commit object.</p>
-<h2 id="The-favourit-part-of-the-day-to-create-a-commit-object">The favourit part of the day to create a commit object<a class="anchor-link" href="#The-favourit-part-of-the-day-to-create-a-commit-object">&#182;</a></h2><p>We have investigated that the highest amount of commit objects not nescessary going to lead author to a highest average of comments per one commit object.</p>
+<p>Visualisation of the average number of comments per commit object shows that author Vincent has highest average of 3.08 (comments per commit object) while author Thomas who has the largest number of commit objects (191) has average of 1.23 comments per one commit object.</p>
+<h2 id="The-favourit-part-of-the-day-to-create-a-commit-object">The favourit part of the day to create a commit object<a class="anchor-link" href="#The-favourit-part-of-the-day-to-create-a-commit-object">&#182;</a></h2><p>We have investigated that the highest amount of commit objects is not necessary going to the lead author to a highest average of comments per one commit object.</p>
 <p>Now we can have a look into time frame, when the most commit objects have been generated (In the first part of the day (Morning) between 00:00AM and 12:00PM or in the second part of the day (Evening) between 12:00PM - 00:00AM).</p>
 
 </div>
@@ -15675,7 +15675,7 @@ IYSwkCRQQgghhBBCCGGh/w9Mwtrf5cbQDwAAAABJRU5ErkJggg==
     <span class="n">ax</span><span class="o">.</span><span class="n">set</span> <span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;Period of the day&#39;</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;Count of commits created&#39;</span><span class="p">)</span>
 
     
-    <span class="c1">#total is the lenght of the commits</span>
+    <span class="c1">#total is the length of the commits</span>
     <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_frame</span><span class="p">[</span><span class="s1">&#39;revision&#39;</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="p">:</span>
         <span class="n">height</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
@@ -15691,7 +15691,7 @@ IYSwkCRQQgghhBBCCGGh/w9Mwtrf5cbQDwAAAABJRU5ErkJggg==
                      <span class="n">data</span><span class="o">=</span><span class="n">number_of_lines_time</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axis2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Morning&#39;</span><span class="p">,</span><span class="s1">&#39;Evening&#39;</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set</span> <span class="p">(</span><span class="n">xlabel</span> <span class="o">=</span> <span class="s1">&#39;Period of the day&#39;</span><span class="p">,</span> <span class="n">ylabel</span> <span class="o">=</span> <span class="s1">&#39;Number of commented lines&#39;</span><span class="p">)</span>
     
-    <span class="c1">#total is a sum of commented liens in a dataframe</span>
+    <span class="c1">#total is a sum of commented lines in a dataframe</span>
     <span class="n">total</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">number_of_lines_time</span><span class="p">[</span><span class="s1">&#39;number of lines&#39;</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">patches</span><span class="p">:</span>
         <span class="n">height</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
@@ -16889,8 +16889,8 @@ iIiISB//D1RVu2wPH73aAAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Visualisation represent that authors are more active and create more commit objects in the evenign time. Overall 67 % of commit objects were created between 12:00PM and 00:00AM, while 69 % of comment lines were created as well in the same time frame.</p>
-<p>Interesting to see if all authors have been more creative in the evening time. Lets check proportion of generated commit object and commented lines by each author in the evening and morning time.</p>
+<p>Visualisation represents that authors are more active and create more commit objects in the evening time. Overall 67 % of commit objects were created between 12:00PM and 00:00AM, while 69 % of comment lines were created as well in the same time frame.</p>
+<p>It will be interesting to see if all authors have been more creative in the evening time. Lets check proportion of generated commit objects and commented lines by each author in the evening and morning time.</p>
 
 </div>
 </div>
@@ -16916,7 +16916,7 @@ iIiISB//D1RVu2wPH73aAAAAAElFTkSuQmCC
     <span class="n">data_frame</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;author&#39;</span> <span class="p">,</span><span class="s1">&#39;day_time_str&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
     
     
-    <span class="c1">#with out hierachi, we need to unstack grouped data frame</span>
+    <span class="c1">#with out hierachy, we need to unstack grouped data frame</span>
     <span class="n">authors_time_commits</span> <span class="o">=</span> \
     <span class="n">data_frame</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;author&#39;</span> <span class="p">,</span><span class="s1">&#39;day_time_str&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
     <span class="n">authors_time_commits</span> <span class="o">=</span> <span class="n">authors_time_commits</span><span class="p">[</span><span class="s1">&#39;revision&#39;</span><span class="p">]</span>
@@ -17032,7 +17032,7 @@ iIiISB//D1RVu2wPH73aAAAAAElFTkSuQmCC
 <div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#create an ax for the plot</span>
+<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#create an axis for the plot</span>
     <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">axis1</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
     <span class="n">plot</span> <span class="o">=</span> <span class="n">authors_time_commits</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">stacked</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Amount of commit objects by author&quot;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axis1</span><span class="p">)</span>
     <span class="n">plot</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Author&quot;</span><span class="p">)</span>
@@ -17525,10 +17525,10 @@ D4bGlzAAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#data frame grouped by author and sum of commetns</span>
+<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#data frame grouped by author and sum of comments</span>
     <span class="n">authors_time_comments</span> <span class="o">=</span> \
     <span class="n">data_frame</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;author&#39;</span> <span class="p">,</span><span class="s1">&#39;day_time_str&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-    <span class="c1">#with out hierachi</span>
+    <span class="c1">#with out hierachy</span>
     <span class="n">authors_time_comments</span> <span class="o">=</span> \
     <span class="n">data_frame</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;author&#39;</span> <span class="p">,</span><span class="s1">&#39;day_time_str&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
     <span class="n">authors_time_comments</span>
@@ -17647,7 +17647,7 @@ D4bGlzAAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#create an ax for the plot</span>
+<div class=" highlight hl-ipython2"><pre><span></span>    <span class="c1">#create an axis for the plot</span>
     <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">axis1</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">17</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
     <span class="n">plot</span> <span class="o">=</span> <span class="n">authors_time_comments</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">stacked</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Amount of comments by author&quot;</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axis1</span><span class="p">)</span>
     <span class="n">plot</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Author&quot;</span><span class="p">)</span>
@@ -18185,7 +18185,7 @@ AAAAAAahiAEAAAAAADAIRQwAAAAAAIBBKGIAAAAAAAAM8v8BoVa7CxU4DasAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Visualisations illiustrate that from 10 authors only two (Alan &amp; Freddie) have craeted more commit objects and generated more comment lines durring the morning time than a night time. For this reason we can assume that the biggest amount of commit opbjects and comments were generated durring the evening time between 12:00PM and 00:00AM.</p>
+<p>Visualisations illiustrate that from 10 authors only two (Alan &amp; Freddie) have created more commit objects and generated more comment lines durring the morning time than a night time. For this reason we can assume that the biggest amount of commit objects and comments were generated durring the evening time between 12:00PM and 00:00AM.</p>
 
 </div>
 </div>
