@@ -43,100 +43,46 @@ class Testcalculator(unittest.TestCase):
         result = Calculator().multiply([2.0,4.0,5.0,6.0],[2,4,5,6])
         self.assertEqual([4.0,16.0,25.0,36.0],result)
  
-        
-        
-
-    '''
-    #test divide funcrtion from calculator class
+        #test divide functions from calculator class
     def test_calculator_divide(self):
-        #assigne clas and state a function u want to test, after insert required amount of parameters
-        result = Calculator().divide(5,5)
-        #then function runs in self.asserEqual you need insert right answer in the first parameter (ex 5/5 = 1)
-        #in the second parameter you need to insert variable result in which equation was assigned
-        self.assertEqual(1,result)
-        result = Calculator().divide(5,1)
-        self.assertEqual(5,result)
-        result = Calculator().divide(5,0.2)
-        self.assertEqual(25,result)   
-        result = Calculator().divide(5,4)
-        self.assertEqual(1.25,result)
-        result = Calculator().divide(5,0)
-        #devide by 0 is not piossible, for this reason program should return nan as per main calculator class
-        self.assertEqual('nan',result)
+        result = Calculator().divide([2,4,5,6],[2,4,5,6])
+        self.assertEqual([1.0,1.0,1.0,1.0],result)
+        result = Calculator().divide([5,9,5,8],[2,3,5,2])
+        self.assertEqual([2.5,3.0,1.0,4.0],result)
+        result = Calculator().divide([5,-9,5,-8],[0.2,3,-1,-2])
+        self.assertEqual([25.0,-3.0,-5.0,4.0], result)  
+        result = Calculator().divide([0,2,3,4], [1,2,0,4])
+        self.assertEqual([0.0, 1.0, 'nan', 1.0], result)
+  
     
-     
-     
+    #test ten to power of the list number
+    def test_calculator_ten_to_power(self):
+        result = Calculator().ten_to_power([0,4,-4,4.5])
+        self.assertEqual([1, 10000, 0.0001, 31622.776601683792],result)
 
-        
+    #cubic root test
+    def test_calculator_cubicr(self):
+        result = Calculator().cubicr([8, 15.625, 0, -8])
+        self.assertEqual([2.0, 2.5, 0.0, -2.0],result)
 
+
+    #test cube of the inserted numebr
+    def test_calculator_cube(self):
+        result = Calculator().cube([8, -8, 0, -1, 1, 2.5])
+        self.assertEqual([512, -512, 0, -1, 1, 15.625],result)
         
     #test exponential
     def test_calculator_exponantial(self):
-        result = Calculator().exponantial(5,5)
-        self.assertEqual(3125,result)
-        result = Calculator().exponantial(5,0)
-        self.assertEqual(1,result)
-        result = Calculator().exponantial(4,-2)
-        self.assertEqual(0.0625,result)
-        result = Calculator().exponantial(-2,5)
-        self.assertEqual(-32,result)
-        result = Calculator().exponantial(5,2)
-        self.assertEqual(25,result)
-        #if string inserted shoudl fail
-        try:
-            result = Calculator().add('2','5')
-            #if shows print it is bad because it can't add strings
-            self.fail('Should have thrown error')
-        except ValueError:
-            pass
+        result = Calculator().exponantial([-2,-4,6,7, 4, 0, 2.5],[2,-4,6,7, 0, 4, 2.5])
+        self.assertEqual([4, 0.00390625, 46656, 823543, 1, 0, 9.882117688026185],result)
         
-    #test squere root    
-    def test_calculator_sqr(self):
-        result = Calculator().sqr(25)
-        self.assertEqual(5,result)
-        #squere root of negative value not possible, so class return nan
-        result = Calculator().sqr(-9)
-        self.assertEqual('nan',result)
-        result = Calculator().sqr(9)
-        self.assertEqual(3,result)
-        try:
-            result = Calculator().sqr('2')
-            #if shows print it is bad because it can't add strings
-            self.fail('Should have thrown error')
-        except ValueError:
-            pass
-        
-    #test cube of the inserted numebr
-    def test_calculator_cube(self):
-        result = Calculator().cube(3)
-        self.assertEqual(27,result)
-        result = Calculator().cube(-9)
-        self.assertEqual(-729,result)
-        result = Calculator().cube(0)
-        self.assertEqual(0,result)
-        try:
-            result = Calculator().cube('2')
-            #if shows print it is bad because it can't add strings
-            self.fail('Should have thrown error')
-        except ValueError:
-            pass
-        
-    #set ten to power of insertet numeber
-    def test_calculator_ten_to_power(self):
-        result = Calculator().ten_to_power(3)
-        self.assertEqual(1000,result)
-        result = Calculator().ten_to_power(-1)
-        self.assertEqual(0.1,result)
-        result = Calculator().ten_to_power(0)
-        self.assertEqual(1,result)
-        result = Calculator().ten_to_power(1)
-        self.assertEqual(10,result)
-        try:
-            result = Calculator().ten_to_power('2')
-            #if shows print it is bad because it can't add strings
-            self.fail('Should have thrown error')
-        except ValueError:
-            pass
+    #formula - x * 10**y
+    def test_calculator_value_multiply_to_ten_power(self):
+        result = Calculator().value_multiply_to_ten_power([5,-5,0,1,-6,6], [5,-1,1,0,2,-2])
+        self.assertEqual([500000, -0.5, 0, 1, -600, 0.06],result)
+    
+'''
+
         
     #formula - x * 10**y
     def test_calculator_value_multiply_to_ten_power(self):
@@ -159,23 +105,7 @@ class Testcalculator(unittest.TestCase):
         except ValueError:
             pass
     
-    #cubic root
-    def test_calculator_cubicr(self):
-        result = Calculator().cubicr(8)
-        self.assertEqual(2,result)
-        result = Calculator().cubicr(15.625)
-        self.assertEqual(2.5,result)
-        result = Calculator().cubicr(0)
-        self.assertEqual(0,result)
-        result = Calculator().cubicr(-8)
-        self.assertEqual(-2,result)
-        try:
-            result = Calculator().cubicr('2')
-            #if shows print it is bad because it can't add strings
-            self.fail('Should have thrown error')
-        #pass if prins error
-        except ValueError:
-            pass
+
         
         
 '''
