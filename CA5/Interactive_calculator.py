@@ -35,7 +35,8 @@ def add_to_list():
             #print '\nAdded list displayed below:'
             return list3
         except:
-            print 'Please enter numeric values and separate each value by using comma'
+            print '\n Please enter numeric values and separate each value by using comma! \n\
+ \n NOTE: Previuosly added numeric values are appended into the list'
 
 #print add_to_list()
             
@@ -59,9 +60,10 @@ def add_to_1stlist():
             #print '\nFirst list displayed below:'
             return list1
         except:
-            print 'Please enter numeric values and separate each value by using comma'
+            print ' \n Please enter numeric values and separate each value by using comma! \n\
+ \n NOTE: Previuosly added numeric values are appended into the list'
             
-print add_to_1stlist()
+#print add_to_1stlist()
 
 
 #create function which would return a one list 
@@ -83,7 +85,8 @@ def add_to_2ndlist():
             #print '\nFirst list displayed below:'
             return list2
         except:
-            print 'Please enter numeric values and separate each value by using comma'
+            print ' \n Please enter numeric values and separate each value by using comma! \n\
+ \n NOTE: Previuosly added numeric values are appended into the list'
 
 #print add_to_2ndlist() <- Test           
      
@@ -188,27 +191,12 @@ def use_calculator(menu_option):
             try:
                 #check if both lists are thre same lenght then return the answer
                 if len(l1) == len (l2):
-                    return ' \n Additon: ' + str(calculator.add(l1, l2))
+                    return ' \n Multiplication: ' + str(calculator.multiply(l1, l2))
                 #else print error
                 else:
                     print ' Please enter two lists with a same length'
             except:
                 print ' Please enter two lists with a same length'
-            
-            
-            
-            
-            number1 = raw_input(input1)
-            number2 = raw_input(input2)
-            #only add if both are numbers
-            try:
-                #only add if both are numbers
-                number1 = float(number1) or int(number1) or long(number1) or complex(number1)
-                number2 = float(number2) or int(number2) or long(number2) or complex(number2)
-                return 'Multiplication:' + str(calculator.multiply(number1, number2))
-            except:
-                #if not number print below messege
-                print 'Please enter integer'
         #exponential
         elif menu_option == 5:
             #assign function for a first list
@@ -218,142 +206,36 @@ def use_calculator(menu_option):
             try:
                 #check if both lists are thre same lenght then return the answer
                 if len(l1) == len (l2):
-                    return ' \n Additon: ' + str(calculator.add(l1, l2))
+                    return ' \n Exponential: ' + str(calculator.exponantial(l1, l2))
                 #else print error
                 else:
                     print ' Please enter two lists with a same length'
             except:
                 print ' Please enter two lists with a same length'
-            
-            
-            
-            
-            number1 = raw_input(input1)
-            number2 = raw_input(input2)
-            try:
-                #only add if both are numbers
-                number1 = float(number1) or int(number1) or long(number1) or complex(number1)
-                number2 = float(number2) or int(number2) or long(number2) or complex(number2)
-                #return exponential
-                return 'Exponential: ' + str(calculator.exponantial(number1, number2))
-            except:
-                #if not number print below messege
-                print 'Please enter integer'
         #cubic
         elif menu_option == 6:
             #assign function for a first list
-            l1 = add_to_1stlist()
-            #assign function for a first list
-            l2 = add_to_2ndlist()
-            try:
-                #check if both lists are thre same lenght then return the answer
-                if len(l1) == len (l2):
-                    return ' \n Additon: ' + str(calculator.add(l1, l2))
-                #else print error
-                else:
-                    print ' Please enter two lists with a same length'
-            except:
-                print ' Please enter two lists with a same length'
-            
-            
-            
-            
-            number1 = raw_input(input_one_numb)
-            try:
-                #only add if both are numbers
-                number1 = float(number1) or int(number1) or long(number1) or complex(number1)
-                #return cubic value
-                return 'Cubic value: ' + str(calculator.cube(number1))
-            except:
-                #if not number print below messege
-                print 'Please enter integer'
+            l1 = add_to_list()
+            #return result
+            return ' \n Cubic value: ' + str(calculator.cube(l1))
         #ten to power to inserted value
         elif menu_option == 7:
             #assign function for a first list
-            l1 = add_to_1stlist()
-            #assign function for a first list
-            l2 = add_to_2ndlist()
-            try:
-                #check if both lists are thre same lenght then return the answer
-                if len(l1) == len (l2):
-                    return ' \n Additon: ' + str(calculator.add(l1, l2))
-                #else print error
-                else:
-                    print ' Please enter two lists with a same length'
-            except:
-                print ' Please enter two lists with a same length'
-            
-            
-            
-            
-            
-            number1 = raw_input(input_one_numb)
-            try:
-                #only add if both are numbers
-                number1 = float(number1) or int(number1) or long(number1) or complex(number1) 
-                #return ten to power of inserted value
-                return 'Ten to power of inserted value: ' +str(calculator.ten_to_power(number1))
-            except:
-                #if not number print below messege
-                print 'Please enter integer'
+            l1 = add_to_list()
+            #return result
+            return ' \n Ten to power of inserted value: ' + str(calculator.ten_to_power(l1))
         #square root
         elif menu_option == 8:
             #assign function for a first list
-            l1 = add_to_1stlist()
-            #assign function for a first list
-            l2 = add_to_2ndlist()
-            try:
-                #check if both lists are thre same lenght then return the answer
-                if len(l1) == len (l2):
-                    return ' \n Additon: ' + str(calculator.add(l1, l2))
-                #else print error
-                else:
-                    print ' Please enter two lists with a same length'
-            except:
-                print ' Please enter two lists with a same length'
-            
-            
-            
-            
-            
-            number1 = raw_input(input_one_numb)
-            try:
-                #only add if both are numbers
-                number1 = float(number1) or int(number1) or long(number1) or complex(number1)
-                #square root
-                return 'Square root: ' + str(calculator.sqr(number1))
-            except:
-                #if not number print below messege
-                print 'Please enter integer'
+            l1 = add_to_list()
+            #return result
+            return ' \n Square root: ' + str(calculator.sqr(l1))
         #cuboc root of the value
         elif menu_option == 9:
             #assign function for a first list
-            l1 = add_to_1stlist()
-            #assign function for a first list
-            l2 = add_to_2ndlist()
-            try:
-                #check if both lists are thre same lenght then return the answer
-                if len(l1) == len (l2):
-                    return ' \n Additon: ' + str(calculator.add(l1, l2))
-                #else print error
-                else:
-                    print ' Please enter two lists with a same length'
-            except:
-                print ' Please enter two lists with a same length'
-            
-            
-            
-            
-            
-            number1 = raw_input(input_one_numb)
-            try:
-                #only add if both are numbers
-                number1 = float(number1) or int(number1) or long(number1) or complex(number1)  
-                #return cubic root
-                return 'Cubic root: ' + str(calculator.cubicr(number1))
-            except:
-                #if not number print below messege
-                print 'Please enter integer'
+            l1 = add_to_list()
+            #return result
+            return ' \n Cubic root: ' + str(calculator.cubicr(l1))
         #Muliply first value by the 10 power to the second value
         elif menu_option == 10:
             #assign function for a first list
@@ -363,28 +245,14 @@ def use_calculator(menu_option):
             try:
                 #check if both lists are thre same lenght then return the answer
                 if len(l1) == len (l2):
-                    return ' \n Additon: ' + str(calculator.add(l1, l2))
+                    return ' \n Muliply first value by the 10 power to the second value: '\
+                + str(calculator.value_multiply_to_ten_power(l1, l2))
                 #else print error
                 else:
                     print ' Please enter two lists with a same length'
             except:
                 print ' Please enter two lists with a same length'
-            
-            
-            
-            
-            
-            number1 = raw_input(input1)
-            number2 = raw_input(input2)
-            try:
-                #only add if both are numbers
-                number1 = float(number1) or int(number1) or long(number1) or complex(number1)
-                number2 = float(number2) or int(number2) or long(number2) or complex(number2)
-                #return value
-                return 'Muliply first value by the 10 power to the second value:' + str(calculator.value_multiply_to_ten_power(number1, number2))
-            except:
-                #if not number print below messege
-                print 'Please enter integer'
+
         
 #cal calcualtor and continue
 def calculator():  
@@ -417,16 +285,11 @@ def calculator():
             print msg
                 
 #call calculator function
-
-
-
-
-
 print calculator()
 
 
        
-#create function which would return a one lis
+#create function which would return a one list with insertet option
 '''  def add_to_list(entry):
     original_entry = entry
     list1 = []
@@ -448,10 +311,3 @@ print calculator()
 print add_to_list(input_one_list)            
 print add_to_list(input1)  
 print add_to_list(input2) '''
-
-
-
-'''
-
- '''       
- 
